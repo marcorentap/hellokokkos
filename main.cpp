@@ -5,12 +5,12 @@ int main(int argc, char* argv[]) {
 
     Kokkos::View<int[10]> view("A View", 10);
 
-    printf("enter parallel_for");
+    printf("enter parallel_for\n");
     Kokkos::parallel_for(10, KOKKOS_LAMBDA (const int &i) {
         view(i) = i;
     });
 
-    printf("print view");
+    printf("print view\n");
     Kokkos::parallel_for(10, KOKKOS_LAMBDA (const int &i) {
         printf("view(i): %d\n", view(i));
     });
