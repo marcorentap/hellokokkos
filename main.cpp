@@ -1,13 +1,14 @@
 #include <Kokkos_Core.hpp>
 #include <impl/Kokkos_Profiling.hpp>
 
-#define N 10
+int N;
 
 int main(int argc, char* argv[]) {
     Kokkos::ScopeGuard guard(argc ,argv);
     Kokkos::Profiling::pushRegion("Whole Program");
 
-    Kokkos::View<int[N]> view("A View", N);
+    N = std::stoi(argv[1]);
+    Kokkos::View<int*> view("A View", N);
 
     Kokkos::Profiling::pushRegion("Set Values");
     printf("enter parallel_for\n");
